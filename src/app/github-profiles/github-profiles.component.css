@@ -1,0 +1,12 @@
+mat-table {
+  width: 100%;
+}
+.imgsize {
+  border-radius: 50%;
+  height: 20%;
+  width: 20%;
+}
+mat-row:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}

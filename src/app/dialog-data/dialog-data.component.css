@@ -1,0 +1,25 @@
+.imgsize {
+  border-radius: 50%;
+  height: 10%;
+  width: 10%;
+}
+.column {
+  float: left;
+  width: 25%;
+  text-align: center;
+  /*padding-left: 15%;*/
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column1 {
+  float: left;
+  width: 50%;
+  text-align: center;
+  /*padding-left: 15%;*/
+}
+.textstyle {
+  font-family: "Courier New", Courier, monospace;
+}

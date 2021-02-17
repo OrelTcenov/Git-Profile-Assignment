@@ -1,0 +1,99 @@
+<div>
+  <!--Image-->
+  <div style="text-align: center">
+    <img
+      class="imgsize"
+      *ngIf="this.data"
+      src="{{ this.data.avatar }}"
+      alt="avatar"
+    />
+  </div>
+
+  <!--Top user info-->
+  <div class="row textstyle">
+    <div class="column">
+      <p *ngIf="this.data.email === null"><b>Email:</b> N/A</p>
+      <p *ngIf="this.data.email"><b>Email:</b>{{ this.data.email }}</p>
+    </div>
+    <div class="column">
+      <p *ngIf="this.data.company === null"><b>Company:</b> N/A</p>
+      <p *ngIf="this.data.company"><b>Company:</b> {{ this.data.company }}</p>
+    </div>
+    <div class="column">
+      <p>
+        <b>{{ this.data.following }}</b> following
+      </p>
+    </div>
+    <div class="column">
+      <p>
+        <b>{{ this.data.followers }}</b> followers
+      </p>
+    </div>
+  </div>
+  <div class="row textstyle">
+    <div class="column1">
+      <p>
+        <b>{{ this.data.repos_count }}</b> repos
+      </p>
+    </div>
+    <div class="column1">
+      <p><b>Acount Created:</b> {{ this.data.acountTime }}</p>
+    </div>
+  </div>
+
+  <!--Table with the user repositories -->
+  <div class="mat-elevation-z8">
+    <mat-table
+      *ngIf="this.dataSource"
+      [dataSource]="this.dataSource"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let el"
+          ><div
+            style="
+              max-width: 300px;
+              white-space: wrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            "
+          >
+            {{ el.name }}
+          </div></mat-cell
+        >
+      </ng-container>
+      <ng-container matColumnDef="Private">
+        <mat-header-cell *matHeaderCellDef>Private</mat-header-cell>
+        <mat-cell *matCellDef="let el">{{ el.private }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Size">
+        <mat-header-cell *matHeaderCellDef>Size</mat-header-cell>
+        <mat-cell *matCellDef="let el">{{ el.size }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Watchers">
+        <mat-header-cell *matHeaderCellDef>Watchers</mat-header-cell>
+        <mat-cell *matCellDef="let el">{{ el.watchers }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Forks">
+        <mat-header-cell *matHeaderCellDef>Forks</mat-header-cell>
+        <mat-cell *matCellDef="let el">{{ el.forks }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Open_issues">
+        <mat-header-cell *matHeaderCellDef>Issues</mat-header-cell>
+        <mat-cell *matCellDef="let el">{{ el.open_issues }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Language">
+        <mat-header-cell *matHeaderCellDef>Language</mat-header-cell>
+        <mat-cell *matCellDef="let el">{{ el.language }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<h1 style="text-align: center; font-family: 'Courier New', Courier, monospace">
+  GitHub Profiles
+</h1>
+
+<!--Search bar-->
+<div style="text-align: center">
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      (keyup)="this.doFilter($event.target.value)"
+      placeholder="Search"
+    />
+  </mat-form-field>
+</div>
+
+<!--Table that present GitHub Profiles-->
+<div class="mat-elevation-z8">
+  <mat-table
+    *ngIf="this.Data"
+    [dataSource]="this.Data"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="Id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef="let el">{{ el.id }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Avatar_url">
+      <mat-header-cell *matHeaderCellDef>Avatar</mat-header-cell>
+      <mat-cell *matCellDef="let el">
+        <img class="imgsize" src="{{ el.avatar_url }}" alt="avatar" />
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let el">{{ el.name }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Following">
+      <mat-header-cell *matHeaderCellDef>Following</mat-header-cell>
+      <mat-cell *matCellDef="let el">{{ el.following }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Followers">
+      <mat-header-cell *matHeaderCellDef>Followers</mat-header-cell>
+      <mat-cell *matCellDef="let el">{{ el.followers }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="getInfo(row)"
+    ></mat-row>
+  </mat-table>
+
+  <!--Paginator-->
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
